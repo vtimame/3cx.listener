@@ -1,0 +1,10 @@
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - ls -lah
+    - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
+    - rsync -P 3cx-listener tvalitov@172.16.101.3:/home/tvalitov
+    - rsync -P config.yml tvalitov@172.16.101.3:/home/tvalitov
